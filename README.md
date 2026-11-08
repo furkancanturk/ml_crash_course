@@ -116,26 +116,6 @@ uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5001
 
 Then access at `http://127.0.0.1:5001`
 
-## Key Learnings
-
-### Overfitting vs Underfitting
-
-- **Linear Regression:** Often underfits (high bias, stable performance)
-- **Decision Tree (no limits):** Often overfits (low bias, high variance)
-- **Gradient Boosting (XGB/LGBM/Cat):** Balances bias-variance through ensemble methods
-
-### Model-Specific Preprocessing
-
-- **CatBoost:** Special handling for categorical features with Ordinal Encoding
-- **Other Models:** Standard One-Hot Encoding for categorical features
-- **All Models:** Standardized numerical features
-
-### Hyperparameter Optimization
-
-Grid search evaluates all parameter combinations:
-- Cross-validation RMSE: Average error across CV folds
-- Train RMSE: Error on training set (detects overfitting if much lower than CV)
-- Test RMSE: Final evaluation on held-out test set
 
 ## Attribution
 
