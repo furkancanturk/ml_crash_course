@@ -1,4 +1,4 @@
-﻿[project]
+[project]
 name = "ml-crash-course"
 version = "0.1.0"
 requires-python = ">=3.14,<3.15"
@@ -14,7 +14,7 @@ dependencies = [
     "xgboost",
     "lightgbm",
     "catboost",
-    "statsforecast",
+    "statsforecast>=2.1.1",
     "prophet",
     "mlflow",
     "jupytext",

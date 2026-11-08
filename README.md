@@ -11,18 +11,6 @@ uv sync --python 3.14
 
 `uv sync` creates `.venv` and installs the locked dependencies. To launch JupyterLab without activating the environment, run `uv run jupyter lab`.
 
-### Windows: statsforecast build requirement
-
-On Windows with Python 3.14, `statsforecast` may need to be built from source. If installation reports that Microsoft Visual C++ 14.0 or greater is required, install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) with the C++ desktop build tools and Windows SDK, then run `uv sync` again.
-
-To install the other packages temporarily without `statsforecast`, run:
-
-```powershell
-uv sync --locked --no-install-package statsforecast
-```
-
-`statsforecast` remains a project dependency and will be required by a normal `uv sync`. Commands using `uv run` also synchronize the environment by default; use `uv run --no-sync` when working with this partial installation.
-
 ## Running MLflow Server
 
 From the repository root, start the MLflow UI using the uv environment:
@@ -31,7 +19,7 @@ From the repository root, start the MLflow UI using the uv environment:
 uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1
 ```
 
-If using the partial installation described above, add `--no-sync` after `uv run`. The existing `mlflow_server_start.bat` instead activates the Conda environment; it does not use `.venv`.
+The existing `mlflow_server_start.bat` instead activates the Conda environment; it does not use `.venv`.
 
 ## Accessing MLflow UI
 
