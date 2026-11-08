@@ -2,7 +2,7 @@
 
 ## Environment Setup
 
-The project uses Python 3.14 and [uv](https://docs.astral.sh/uv/). Dependencies are declared in `pyproject.toml` and pinned in `uv.lock`. Run the following commands from the repository root in PowerShell:
+The project uses Python 3.14 and [uv](https://docs.astral.sh/uv/). Dependencies are declared in `pyproject.toml`; uv maintains a local `uv.lock` file. Run the following commands from the repository root in PowerShell:
 
 ```powershell
 uv sync --python 3.14
