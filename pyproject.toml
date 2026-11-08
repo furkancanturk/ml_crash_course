@@ -1,0 +1,24 @@
+﻿[project]
+name = "ml-crash-course"
+version = "0.1.0"
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "pip",
+    "tqdm",
+    "pandas",
+    "numpy",
+    "plotly",
+    "seaborn",
+    "scikit-learn",
+    "imbalanced-learn",
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "statsforecast",
+    "prophet",
+    "mlflow",
+    "jupytext",
+    "jupyterlab",
+    "ipykernel",
+    "nbformat",
+]

@@ -2,56 +2,36 @@
 
 ## Environment Setup
 
-### 1. Create Conda Environment
+The project uses Python 3.14 and [uv](https://docs.astral.sh/uv/). Dependencies are declared in `pyproject.toml` and pinned in `uv.lock`. Run the following commands from the repository root in PowerShell:
 
-First, create the conda environment from the `environment.yml` file:
-
-```bash
-conda env create -f environment.yml
+```powershell
+uv sync --python 3.14
+.\.venv\Scripts\Activate.ps1
 ```
 
-This command will:
-- Create a new environment named `ml_crash_course`
-- Install Python 3.12
-- Install all required dependencies (pandas, numpy, scikit-learn, xgboost, lightgbm, catboost, mlflow, etc.)
+`uv sync` creates `.venv` and installs the locked dependencies. To launch JupyterLab without activating the environment, run `uv run jupyter lab`.
 
-### 2. Activate the Environment
+### Windows: statsforecast build requirement
 
-After the environment is created, activate it:
+On Windows with Python 3.14, `statsforecast` may need to be built from source. If installation reports that Microsoft Visual C++ 14.0 or greater is required, install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) with the C++ desktop build tools and Windows SDK, then run `uv sync` again.
 
-```bash
-conda activate ml_crash_course
+To install the other packages temporarily without `statsforecast`, run:
+
+```powershell
+uv sync --locked --no-install-package statsforecast
 ```
+
+`statsforecast` remains a project dependency and will be required by a normal `uv sync`. Commands using `uv run` also synchronize the environment by default; use `uv run --no-sync` when working with this partial installation.
 
 ## Running MLflow Server
 
-The MLflow server tracks all your model experiments and provides a web UI for visualization.
+From the repository root, start the MLflow UI using the uv environment:
 
-### Option 1: Using the Batch Script (Windows)
-
-Use the provided `mlflow_server_start.bat` file:
-
-```batch
-mlflow_server_start.bat
+```powershell
+uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1
 ```
 
-This automatically:
-- Activates the `ml_crash_course` environment
-- Starts the MLflow UI server
-- Configures the SQLite backend at `mlruns/mlflow.db`
-- Opens the browser at `http://127.0.0.1:5000`
-
-### Option 2: After Activating Environment
-
-Once your environment is activated, you can run MLflow directly:
-
-```bash
-# First activate the environment
-conda activate ml_crash_course
-
-# Then run MLflow
-mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db
-```
+If using the partial installation described above, add `--no-sync` after `uv run`. The existing `mlflow_server_start.bat` instead activates the Conda environment; it does not use `.venv`.
 
 ## Accessing MLflow UI
 
@@ -134,16 +114,16 @@ If you manually deleted an experiment in MLflow:
 ### Issue: "ModuleNotFoundError: No module named 'mlflow'"
 
 Ensure the environment is properly activated:
-```bash
-conda activate ml_crash_course
+```powershell
+.\.venv\Scripts\Activate.ps1
 python -c "import mlflow; print(mlflow.__version__)"
 ```
 
 ### Issue: Port 5000 Already in Use
 
 If port 5000 is busy, specify a different port:
-```bash
-C:/Users/Asus/miniconda3/envs/ml_crash_course/python.exe -m mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db --port 5001
+```powershell
+uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5001
 ```
 
 Then access at `http://127.0.0.1:5001`
