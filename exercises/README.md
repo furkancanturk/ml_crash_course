@@ -8,11 +8,39 @@ This folder contains the hands-on notebooks for the machine learning course:
 
 Before running the notebooks, set up the project's uv environment as described in the [project README](../README.md#environment-setup). Then open them in Jupyter and run them in order.
 
+## Running MLflow Server
+
+From the same working directory used by the regression notebook, start the MLflow UI using the uv environment. Both the notebook and server use `sqlite:///mlflow.db`, which refers to a database in the current working directory:
+
+```powershell
+uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1
+```
+
+The existing `mlflow_server_start.bat` instead activates the Conda environment; it does not use `.venv`.
+
+## Accessing MLflow UI
+
+Once the server is running, open your browser and navigate to:
+
+```
+http://127.0.0.1:5000
+```
+
+You'll see:
+- **Experiments:** List of all tracked experiments
+- **Runs:** Individual model training runs with hyperparameters and metrics
+- **Line Charts:** Visualization of HPO iterations showing how metrics improve across parameter combinations
+- **Leaderboard:** Model comparison sorted by performance metrics
+
+![MLflow Dashboard](mlflow_dashboard.png)
+
+*MLflow UI showing experiments, metrics, and model comparison*
+
 ## Running Experiments
 
 ### Step 1: Prepare Data and Models
 
-Execute cells 1-6 in `block2.ipynb` to:
+In `02_regression_and_hyperparameter_optimization.ipynb`, run the cells through the HPO Engine section to:
 - Load the Ames Housing dataset
 - Preprocess data with appropriate encoders
 - Define the pipeline factory
@@ -20,7 +48,7 @@ Execute cells 1-6 in `block2.ipynb` to:
 
 ### Step 2: Run Hyperparameter Optimization
 
-Execute cell 7 (Execution Loop) to:
+Run the Execution Loop section to:
 - Setup MLflow experiment (handles deleted experiments automatically)
 - Run grid search for each model:
   - Linear Regression

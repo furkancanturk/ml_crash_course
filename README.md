@@ -44,35 +44,9 @@ Windows (PowerShell):
 
 To launch JupyterLab without activating the environment, run `uv run jupyter lab`.
 
-## Running MLflow Server
+## Exercises
 
-From the repository root, start the MLflow UI using the uv environment:
-
-```powershell
-uv run mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1
-```
-
-The existing `mlflow_server_start.bat` instead activates the Conda environment; it does not use `.venv`.
-
-## Accessing MLflow UI
-
-Once the server is running, open your browser and navigate to:
-
-```
-http://127.0.0.1:5000
-```
-
-You'll see:
-- **Experiments:** List of all tracked experiments
-- **Runs:** Individual model training runs with hyperparameters and metrics
-- **Line Charts:** Visualization of HPO iterations showing how metrics improve across parameter combinations
-- **Leaderboard:** Model comparison sorted by performance metrics
-
-![MLflow Dashboard](mlflow_dashboard.png)
-
-*MLflow UI showing experiments, metrics, and model comparison*
-
-See [Running Experiments](exercises/README.md#running-experiments) for the exercise workflow.
+See the [exercise guide](exercises/README.md) for notebooks, experiment tracking, and troubleshooting.
 
 ## Attribution
 
