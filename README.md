@@ -148,3 +148,7 @@ Grid search evaluates all parameter combinations:
 - Cross-validation RMSE: Average error across CV folds
 - Train RMSE: Error on training set (detects overfitting if much lower than CV)
 - Test RMSE: Final evaluation on held-out test set
+
+## Attribution
+
+The [`Interactive Decision Tree`](Interactive%20Decision%20Tree/) folder contains third-party material from Avi Chawla's [“Interactively Prune a Decision Tree”](https://blog.dailydoseofds.com/p/interactively-prune-a-decision-tree) (Daily Dose of Data Science, April 7, 2024). See the folder's [attribution](Interactive%20Decision%20Tree/ATTRIBUTION.md) for details.
