@@ -28,73 +28,15 @@ http://127.0.0.1:5000
 
 You'll see:
 - **Experiments:** List of all tracked experiments
-- **Runs:** Individual model training runs with hyperparameters and metrics
-- **Line Charts:** Visualization of HPO iterations showing how metrics improve across parameter combinations
-- **Leaderboard:** Model comparison sorted by performance metrics
+- **Runs:** Baseline and HPO selection scores by model, the nested cross-validation comparison for XGBoost, and the final test score
 
 ![MLflow Dashboard](mlflow_dashboard.png)
 
 *MLflow UI showing experiments, metrics, and model comparison*
 
-## Running Experiments
-
-### Step 1: Prepare Data and Models
-
-In `02_regression_and_hyperparameter_optimization.ipynb`, run the cells through the HPO Engine section to:
-- Load the Ames Housing dataset
-- Preprocess data with appropriate encoders
-- Define the pipeline factory
-- Setup MLflow experiment tracking
-
-### Step 2: Run Hyperparameter Optimization
-
-Run the Execution Loop section to:
-- Setup MLflow experiment (handles deleted experiments automatically)
-- Run grid search for each model:
-  - Linear Regression
-  - Decision Tree
-  - XGBoost
-  - LightGBM
-  - CatBoost
-- Log all HPO iterations with model-specific metric names
-- Display a leaderboard of results
-
-### Step 3: View Results in MLflow UI
-
-The metrics are logged with model-namespaced names:
-- `xgboost/cv_rmse_mean`
-- `lightgbm/cv_rmse_mean`
-- `decision_tree/cv_rmse_mean`
-- etc.
-
-Each model gets a **consistent color** across all visualizations for easy comparison.
-
-## Understanding the Output
-
-### Line Charts
-
-Each model's line chart shows:
-- **X-axis:** HPO iteration steps (0 to N)
-- **Y-axis:** Metric values (CV RMSE, Training RMSE, etc.)
-- **Color:** Consistent per model name
-- **Dots:** Each HPO iteration
-
-### Final Leaderboard
-
-After all experiments complete, you'll see:
-- **Model:** Name of the model
-- **Test RMSE:** Error on held-out test set
-- **Test R²:** R-squared score on test set
-- **Best Params:** Optimal hyperparameters found by grid search
 
 ## Troubleshooting
 
-### Issue: "Cannot set a deleted experiment"
-
-If you manually deleted an experiment in MLflow:
-1. The code automatically detects this
-2. It either restores the experiment or creates a new one with a timestamp suffix
-3. No manual intervention needed - just re-run the cells
 
 ### Issue: "ModuleNotFoundError: No module named 'mlflow'"
 
