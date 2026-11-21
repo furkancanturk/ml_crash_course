@@ -15,6 +15,7 @@ dependencies = [
     "lightgbm",
     "catboost",
     "statsforecast>=2.1.1",
+    "statsmodels",
     "prophet",
     "mlflow",
     "jupytext",
